@@ -1,9 +1,9 @@
 
 module.exports = {
-    name: 'core.modules',
+    name: 'core.type.module',
     dependecies: [
-        'core.getDefinitionObject',
-        'core.build'
+        'core.plugin.get-definition-object',
+        'core.plugin.build'
     ],
     types: [{
         name: 'module',
