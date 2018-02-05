@@ -2,8 +2,8 @@
 module.exports = {
     name: 'core.type.module',
     dependecies: [
-        'core.plugin.get-definition-object',
-        'core.plugin.build'
+        'core.plugin.type',
+        'core.loader.types',
     ],
     types: [{
         name: 'module',
@@ -47,6 +47,7 @@ module.exports = {
             } else {
                 return core.injector.load(name, dependencies || [], function(){
                     value = get.apply(core, arguments);
+                    core.modules[name] = value;
                     done && done(value);
                     return value;
                 });
@@ -54,6 +55,7 @@ module.exports = {
         }
     }],
     extend: {
+        modules: {},
         Module(name, dependencies, get, done) {
             var definition = this.getDefinitionObject(name, dependencies, get, 'module', done);
             return this.build(definition, definition.done);
