@@ -26,7 +26,7 @@ module.exports = {
                 compiled: 'function(){  }'
             }
         ],
-        build(definition, _super, done) {
+        build(definition, done) {
 
             var core = this;
             var {
@@ -57,6 +57,9 @@ module.exports = {
     extend: {
         modules: {},
         Module(name, dependencies, get, done) {
+            if(Array.isArray(name)){
+                return name.map(this.Module)
+            }
             var definition = this.getDefinitionObject(name, dependencies, get, 'module', done);
             return this.build(definition, definition.done);
         },
