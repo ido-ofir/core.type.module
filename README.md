@@ -9,7 +9,7 @@ core.plugin(
    require('core.type.module')
 );
  
-// define an action using core.Action method
+// define a module using core.Module method
 core.Module({
     name: 'someModule',
     dependencies: ['moduleA', 'moduleB'],
