@@ -10,19 +10,23 @@ core.plugin(
 );
  
 // define an action using core.Action method
-core.Component({
+core.Module({
     name: 'someModule',
     dependencies: ['moduleA', 'moduleB'],
     get(moduleA, moduleB){
+    
+        // build and return your module here
         return {
             doStuff(){ alert('did stuff'); }
         }
     }
 });
 
-// available on core.modules
-core.modules.someModule.doStuff();
 
-// can also be required
+// can be required
 core.require(['someModule'], (someModule) => { ... })
+
+
+// once loaded, also available on core.modules
+core.modules.someModule.doStuff();
 ```
